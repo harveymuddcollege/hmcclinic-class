@@ -37,12 +37,6 @@
 %   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
 %   02111-1307  USA 
 %
-%
-% $Log$
-% Revision 1.6  2003/11/17 21:11:21  cmc
-% Change name of graphic file.
-%
-%
 % \fi
 %%
 
@@ -99,8 +93,6 @@
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
   \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
-  \fancyhead[RE]{\chaptername\ \thechapter}
-  \fancyhead[LO]{Section \thesection}
   \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
   \fancyfoot{}
 }
