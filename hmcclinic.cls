@@ -15,6 +15,11 @@
 %   Department of Computer Science
 %   Department of Mathematics
 %
+% *** HMC STUDENTS SHOULD NOT CHANGE THE TYPESETTING PARAMETERS FOR ***
+% *** THEIR CLINIC REPORTS WITHOUT FIRST CHECKING WITH THEIR CLINIC ***
+% *** DIRECTOR.  STUDENTS WISHING TO ADD FEATURES SHOULD DO SO WITH *** 
+% *** OTHER FILES, NOT BY MODIFYING THIS FILE.                      *** 
+%
 % License:
 % 
 %   This program is free software; you can redistribute it and/or
@@ -36,7 +41,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{newclinic}[2003/04/30 HMC Clinic Report class]
+\ProvidesClass{hmcclinic}[2003/04/30 HMC Clinic Report class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax %% <-- Change this if we decide to declare some
                       %%     options for this class!
@@ -48,8 +53,7 @@
 
 %%% Load some required/very useful packages.
 \RequirePackage{amsmath}
-\RequirePackage{amsfonts}
-\RequirePackage{bbold}
+\RequirePackage[psamsfonts]{amsfonts}
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
 \RequirePackage{booktabs}
@@ -158,7 +162,8 @@
         \lineskip .75em%
         \set@ess{\@advisor}
         \textbf{Advisor\@ess} \\[0.5ex]
-      \begin{tabular}[t]{c}%
+      \begin{tabular}[t]{l}%
+        \global\let\and\\%
         \@advisor
       \end{tabular}\par}%
     \vskip 1.5em%
@@ -166,7 +171,8 @@
       \lineskip .75em%
       \set@ess{\@liaison}
       \textbf{Liaison\@ess} \\[0.5ex]
-      \begin{tabular}[t]{c}%
+      \begin{tabular}[t]{l}%
+        \global\let\and\\%
         \@liaison
       \end{tabular}\par}%
     \vskip 1.5em%
@@ -308,3 +314,8 @@
      \fi
   \fi
 }
+
+%% Ragged bottom is better than the alternative...
+
+\raggedbottom
+
