@@ -55,22 +55,76 @@
 \RequirePackage{booktabs}
 \RequirePackage{ifthen}
 \RequirePackage{graphics}
+\RequirePackage{fancyhdr}
+
 
 %%% Set the default typeface via a package.
 \RequirePackage{palatino}
 
 %%% Define some environments.
-\newenvironment{abstract}{\chapter*{Abstract}}{}
+\newenvironment{abstract}{\chapter*{Abstract}%
+\addcontentsline{toc}{chapter}{Abstract}}{}
 
-\newenvironment{acknowledgments}{\chapter*{Acknowledgments}}{}
+\newenvironment{acknowledgments}{\chapter*{Acknowledgments}%
+\addcontentsline{toc}{chapter}{Acknowledgments}}{}
+
+
+%%% Set the headers and footers.
+
+\pagestyle{fancy}{%
+  \fancyhf{} %% Clear all headers and footers.
+  \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+  \fancyhead[RE]{\chaptername\ \thechapter}
+  \fancyhead[LO]{Section \thesection}
+  \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
+  \fancyfoot{}
+}
+
+%%% Redefine the \chaptermark and \sectionmark commands.  Note that
+%%%  this redefinition must occur after setting pagestyle to fancy.
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{%
+  \markright{#1}{}}
+
+\addtolength{\headwidth}{.5\marginparsep}
+\addtolength{\headwidth}{.5\marginparwidth}
+
+\fancypagestyle{plain}{%
+  \fancyhf{} %% Clear all headers and footers.
+%  \fancyfoot[LE,RO]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{empty}{%
+  \fancyhf{} %% Clear all headers and footers.
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{front}{%
+  \fancyhf{} %% Clear all headers and footers.
+  \fancyhead[LE]{\textbf{\thepage{}}\hspace{1em}\nouppercase\leftmark}
+  \fancyhead[RO]{\nouppercase\rightmark\hspace{1em}\textbf{\thepage}}
+}
 
 
 
 %%% Define the layout of the title page.
 
+\newlength{\ignored@length}
+\newcommand{\set@ess}[1]{%
+  \renewcommand{\and}{%
+    \global\def\@ess{s}%
+  }%
+  \global\def\@ess{}%
+  \settowidth{\ignored@length}{#1}
+}
 
-
-  \renewcommand\maketitle{\begin{titlepage}%
+  \renewcommand{\maketitle}{%
+    \thispagestyle{empty}
+    \begin{titlepage}%
       \let\footnotesize\small
       \let\footnoterule\relax
                                 %  \let \footnote \thanks
@@ -92,7 +146,8 @@
       {\large
         \lineskip .75em%
         \let\and\par
-        \textbf{Team Members} \\[0.5ex]
+        \set@ess{\@author}%
+        \textbf{Team Member\@ess} \\[0.5ex]
         \begin{tabular}[t]{l}%
           \global\let\and\\%
           \@author
@@ -101,14 +156,16 @@
       \vskip 1.5em%
       {\large
         \lineskip .75em%
-        \textbf{Advisor} \\[0.5ex]
+        \set@ess{\@advisor}
+        \textbf{Advisor\@ess} \\[0.5ex]
       \begin{tabular}[t]{c}%
         \@advisor
       \end{tabular}\par}%
     \vskip 1.5em%
     {\large
       \lineskip .75em%
-      \textbf{Liaison} \\[0.5ex]
+      \set@ess{\@liaison}
+      \textbf{Liaison\@ess} \\[0.5ex]
       \begin{tabular}[t]{c}%
         \@liaison
       \end{tabular}\par}%
@@ -116,7 +173,8 @@
                                 %\end{center}
                                 %\par
     \@thanks
-    \vfil\null
+    \vfil\eject
+    \cleardoublepage
   \end{titlepage}%
   \setcounter{footnote}{0}%
   \global\let\thanks\relax
@@ -149,13 +207,104 @@
 \def\@reporttype{\@latex@warning@no@line{No \noexpand\reporttype given}}
 
 
+%%% Specify some details about the appearance of the table of contents.
+
+
+\renewcommand{\tableofcontents}{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\contentsname
+        \@mkboth{%
+           \contentsname}{\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+
+
+
 
 %%% Print only the chapter and section number in the Table of Contents.
 
 \setcounter{tocdepth}{1}
+
 
 %%% metafont font.  If logo not available, use the second form
 %%%
 %%% \font\mffont=logosl10 scaled\magstep1
 \let\mffont=\sf
 
+\renewcommand{\frontmatter}{%
+    \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{roman}
+  \pagestyle{front}}
+
+\renewcommand{\mainmatter}{%
+    \cleardoublepage
+  \@mainmattertrue
+  \pagenumbering{arabic}%
+\pagestyle{fancy}}
+
+
+
+\renewenvironment{thebibliography}[1]
+     {\chapter*{\bibname
+        \@mkboth{\bibname}{\bibname}
+      \addcontentsline{toc}{chapter}{\bibname}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\renewcommand\newblock{\hskip .11em\@plus.33em\@minus.07em}
+\let\@openbib@code\@empty
+
+\renewenvironment{theindex}
+               {\if@twocolumn
+                  \@restonecolfalse
+                \else
+                  \@restonecoltrue
+                \fi
+                \columnseprule \z@
+                \columnsep 35\p@
+                \twocolumn[\@makeschapterhead{\indexname}]%
+                \@mkboth{\indexname}%
+                        {\indexname}%
+                        \addcontentsline{toc}{chapter}{\indexname}%
+                \thispagestyle{plain}\parindent\z@
+                \parskip\z@ \@plus .3\p@\relax
+                \let\item\@idxitem}
+               {\if@restonecol\onecolumn\else\clearpage\fi}
+
+
+%%% Fix \cleardoublepage so it doesn't put headers on pages that are
+%%% supposed to be blank.
+
+\renewcommand*{\cleardoublepage}{%
+% original definition, see latex.ltx
+  \clearpage
+  \if@twoside
+     \ifodd\c@page
+  \else
+     \thispagestyle{empty}% added
+     \hbox{}\newpage
+     \if@twocolumn
+        \hbox{}\newpage
+     \fi
+     \fi
+  \fi
+}
