@@ -40,27 +40,8 @@
 % \fi
 %%
 
-\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{hmcclinic}[2004/09/20 HMC Clinic Report class]
-
-%%% Get some useful information when errors occur.
-\setcounter{errorcontextlines}{25}
-
-
-%%% Load some required/very useful packages.
-\RequirePackage{amsmath}
-\RequirePackage[psamsfonts]{amsfonts}
-\RequirePackage{xspace}
-\RequirePackage{verbatim}
-\RequirePackage{booktabs}
-\RequirePackage{ifthen}
-\RequirePackage{graphics}
-\RequirePackage{fancyhdr}
-
-
-%%% Set the default typeface via a package.
-\RequirePackage{palatino}
-
+\NeedsTeXFormat{LaTeX2e}
 
 %%% Declare and set some options.
 
@@ -87,6 +68,26 @@
 
 %%% Include local configuration file, if any.
 \InputIfFileExists{hmcclinic.cfg}{}{}
+
+
+%%% Get some useful information when errors occur.
+\setcounter{errorcontextlines}{25}
+
+
+%%% Load some required/very useful packages.
+\RequirePackage{amsmath}
+\RequirePackage[psamsfonts]{amsfonts}
+\RequirePackage{xspace}
+\RequirePackage{verbatim}
+\RequirePackage{booktabs}
+\RequirePackage{ifthen}
+\RequirePackage{graphics}
+\RequirePackage{fancyhdr}
+
+
+%%% Set the default typeface via a package.
+\RequirePackage{palatino}
+
 
 %%% Define some environments.
 \ifshortdoc
