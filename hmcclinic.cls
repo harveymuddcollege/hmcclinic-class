@@ -41,7 +41,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hmcclinic}[2003/10/14 HMC Clinic Report class]
+\ProvidesClass{hmcclinic}[2004/09/09 HMC Clinic Report class]
 
 %%% Get some useful information when errors occur.
 \setcounter{errorcontextlines}{25}
@@ -252,7 +252,7 @@
 \setcounter{tocdepth}{1}
 
 
-%%% metafont font.  If logo not available, use the second form
+%%% Set Metafont font.  If logo not available, use the second form.
 %%%
 %%% \font\mffont=logosl10 scaled\magstep1
 \let\mffont=\sf
@@ -268,7 +268,6 @@
   \@mainmattertrue
   \pagenumbering{arabic}%
 \pagestyle{fancy}}
-
 
 
 \renewenvironment{thebibliography}[1]
@@ -293,6 +292,13 @@
       \endlist}
 \renewcommand\newblock{\hskip .11em\@plus.33em\@minus.07em}
 \let\@openbib@code\@empty
+
+\AtBeginDocument{\@ifundefined{bibsection}{}{%
+    % Handle natbib
+    \let\N@tbibsection\bibsection
+    \def\bibsection{\N@tbibsection\addcontentsline{toc}{chapter}{\bibname}}%
+}}
+
 
 \renewenvironment{theindex}
                {\if@twocolumn
