@@ -37,6 +37,12 @@
 %   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
 %   02111-1307  USA 
 %
+%
+% $Log$
+% Revision 1.6  2003/11/17 21:11:21  cmc
+% Change name of graphic file.
+%
+%
 % \fi
 %%
 
@@ -150,7 +156,7 @@
       \let\thanks\ignoreit
       \parindent0pt
       \null\vfil
-      {\large \scalebox{0.55}{\includegraphics{hmclogo-color}} \\[0.5ex]%
+      {\large \scalebox{0.55}{\includegraphics{hmclogo}} \\[0.5ex]%
                                 % Harvey Mudd College\\[0.5ex]%
         \@department\par}%
       \vskip 60\p@
