@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 % 
-% clinic.cls -- Harvey Mudd College Clinic Report LaTeX Class File
+% hmcclinic.cls -- Harvey Mudd College Clinic Report LaTeX Class File
 %
 % $Id$
 %
@@ -41,11 +41,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hmcclinic}[2003/04/30 HMC Clinic Report class]
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
-\ProcessOptions\relax %% <-- Change this if we decide to declare some
-                      %%     options for this class!
-\LoadClass[11pt,openright]{book}
+\ProvidesClass{hmcclinic}[2003/10/14 HMC Clinic Report class]
 
 %%% Get some useful information when errors occur.
 \setcounter{errorcontextlines}{25}
@@ -65,6 +61,23 @@
 %%% Set the default typeface via a package.
 \RequirePackage{palatino}
 
+
+%%% Declare and set some options.
+
+\DeclareOption{midyear}{%
+  \AtEndOfClass{\def\@reporttype{Midyear Report}}
+}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\ExecuteOptions{}
+\ProcessOptions
+
+%%% Load the book class with some default options.
+\LoadClass[11pt,openright]{book}
+
+
+%%% Include local configuration file, if any.
+\InputIfFileExists{hmcclinic.cfg}{}{}
+
 %%% Define some environments.
 \newenvironment{abstract}{\chapter*{Abstract}%
 \addcontentsline{toc}{chapter}{Abstract}}{}
@@ -74,6 +87,8 @@
 
 
 %%% Set the headers and footers.
+
+\setlength{\headheight}{14pt}
 
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
@@ -208,9 +223,11 @@
 \def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
 \def\consultant#1{\gdef\@consultant{#1}}
 \def\@consultant{}
-\newcommand{\reporttype}{WOW}
+%\newcommand{\reporttype}{WOW}
 \def\reporttype#1{\gdef\@reporttype{#1}}
-\def\@reporttype{\@latex@warning@no@line{No \noexpand\reporttype given}}
+%\def\@reporttype{\@latex@warning@no@line{No \noexpand\reporttype given}}
+%%% Default to Final Report
+\def\@reporttype{Final Report}
 
 
 %%% Specify some details about the appearance of the table of contents.
@@ -318,4 +335,6 @@
 %% Ragged bottom is better than the alternative...
 
 \raggedbottom
+
+
 
