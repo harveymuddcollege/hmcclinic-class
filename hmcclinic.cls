@@ -1,4 +1,8 @@
 % \iffalse meta-comment
+% 
+% clinic.cls -- Harvey Mudd College Clinic Report LaTeX Class File
+%
+% $Id$
 %
 % Copyright (C) 2003
 %
@@ -29,8 +33,6 @@
 %   02111-1307  USA 
 %
 % \fi
-%%
-%% Harvey Mudd College Clinic Report LaTeX class file.
 %%
 
 \NeedsTeXFormat{LaTeX2e}
