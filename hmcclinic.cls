@@ -41,7 +41,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{hmcclinic}[2004/09/09 HMC Clinic Report class]
+\ProvidesClass{hmcclinic}[2004/09/20 HMC Clinic Report class]
 
 %%% Get some useful information when errors occur.
 \setcounter{errorcontextlines}{25}
@@ -64,31 +64,67 @@
 
 %%% Declare and set some options.
 
-\DeclareOption{midyear}{%
-  \AtEndOfClass{\def\@reporttype{Midyear Report}}
+\newif\ifshortdoc\shortdocfalse
+\DeclareOption{proposal}{%
+  \shortdoctrue
+  \AtEndOfClass{\def\@reporttype{Project Proposal}}%
 }
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
+\DeclareOption{midyear}{%
+  \AtEndOfClass{\def\@reporttype{Midyear Report}}%
+}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}%
+    {\ifshortdoc report\else book\fi}}
 \ExecuteOptions{}
 \ProcessOptions
 
-%%% Load the book class with some default options.
+%%% Load the book class (or article class for proposals) with some
+%%% default options.
+\ifshortdoc
+\LoadClass[11pt,twoside]{article}
+\else
 \LoadClass[11pt,openright]{book}
-
+\fi
 
 %%% Include local configuration file, if any.
 \InputIfFileExists{hmcclinic.cfg}{}{}
 
 %%% Define some environments.
+\ifshortdoc
+% No need to define abstract
+\else
 \newenvironment{abstract}{\chapter*{Abstract}%
 \addcontentsline{toc}{chapter}{Abstract}}{}
+\fi
 
 \newenvironment{acknowledgments}{\chapter*{Acknowledgments}%
 \addcontentsline{toc}{chapter}{Acknowledgments}}{}
 
 
-%%% Set the headers and footers.
+%%% Set the page layout parameters for article and books.
 
 \setlength{\headheight}{14pt}
+
+\ifshortdoc
+%%% Set the headers and footers.
+ 
+\pagestyle{fancy}{%
+  \fancyhf{} %% Clear all headers and footers.
+  \fancyhead[LE]{\textbf{\thepage{}}}
+  \fancyhead[RE]{\nouppercase\leftmark}
+  \fancyhead[LO]{\nouppercase\rightmark}
+  \fancyhead[RO]{\textbf{\thepage}}
+  \fancyfoot{}
+}
+
+%%% Redefine the \sectionmark and \subsectionmark commands.  Note that
+%%%  this redefinition must occur after setting pagestyle to fancy.
+\renewcommand{\sectionmark}[1]{%
+  \markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{%
+  \markright{#1}{}}
+
+\else
+%%% Set the headers and footers.
 
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
@@ -103,6 +139,7 @@
   \markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{%
   \markright{#1}{}}
+\fi
 
 \addtolength{\headwidth}{.5\marginparsep}
 \addtolength{\headwidth}{.5\marginparwidth}
@@ -146,6 +183,7 @@
       \let\footnoterule\relax
                                 %  \let \footnote \thanks
       \let\thanks\ignoreit
+      \raggedright
       \parindent0pt
       \null\vfil
       {\large \scalebox{0.55}{\includegraphics{hmclogo}} \\[0.5ex]%
@@ -257,6 +295,11 @@
 %%% \font\mffont=logosl10 scaled\magstep1
 \let\mffont=\sf
 
+\ifshortdoc
+\newcommand{\frontmatter}{}
+\newcommand{\mainmatter}{}
+\newcommand{\backmatter}{}
+\else
 \renewcommand{\frontmatter}{%
     \cleardoublepage
   \@mainmatterfalse
@@ -268,7 +311,7 @@
   \@mainmattertrue
   \pagenumbering{arabic}%
 \pagestyle{fancy}}
-
+\fi
 
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname
