@@ -88,7 +88,6 @@
 %%% Set the default typeface via a package.
 \RequirePackage{mathpazo}
 \RequirePackage[scaled=.95]{helvet}
-\RequirePackage{courier}
 
 
 %%% Define some environments.
