@@ -48,7 +48,7 @@
 \newif\ifshortdoc\shortdocfalse
 \DeclareOption{proposal}{%
   \shortdoctrue
-  \AtEndOfClass{\def\@reporttype{Project Proposal}}%
+  \AtEndOfClass{\def\@reporttype{Statement of Work}}%
 }
 \DeclareOption{midyear}{%
   \AtEndOfClass{\def\@reporttype{Midyear Report}}%
