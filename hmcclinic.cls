@@ -181,21 +181,20 @@
   \renewcommand{\maketitle}{%
     \thispagestyle{empty}
     \begin{titlepage}%
+      \enlargethispage{3em}
       \let\footnotesize\small
       \let\footnoterule\relax
-                                %  \let \footnote \thanks
       \let\thanks\ignoreit
       \raggedright
       \parindent0pt
-      \null\vfil
+      \null
       {\large \scalebox{0.55}{\includegraphics{hmclogo}} \\[0.5ex]%
                                 % Harvey Mudd College\\[0.5ex]%
         \@department\par}%
-      \vskip 60\p@
+        \vskip 60pt minus 15pt
       {\large \@reporttype{} for \\[0.5ex]%
         \emph{\@sponsor}}
-      \vskip 60\p@
-                                %\begin{center}%
+        \vskip 60pt minus 15pt
       {\LARGE \noindent\@title \par}%
       \vskip 3em%
       {\large \@date \par}%       % Set date in \large size.
@@ -228,9 +227,19 @@
         \global\let\and\\%
         \@liaison
       \end{tabular}\par}%
-    \vskip 1.5em%
-                                %\end{center}
-                                %\par
+      \ifx\@consultant\@undefined%
+      \else
+        {\vskip 1.5em%
+          {\large
+           \lineskip .75em%
+           \set@ess{\@consultant}
+           \textbf{Consultant\@ess} \\[0.5ex]
+           \begin{tabular}[t]{l}%
+           \global\let\and\\%
+           \@consultant
+           \end{tabular}\par}}%
+      \fi
+     
     \@thanks
     \vfil\eject
     \cleardoublepage
@@ -260,8 +269,6 @@
 \def\advisor#1{\gdef\@advisor{#1}}
 \def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
 \def\consultant#1{\gdef\@consultant{#1}}
-\def\@consultant{}
-%\newcommand{\reporttype}{WOW}
 \def\reporttype#1{\gdef\@reporttype{#1}}
 %\def\@reporttype{\@latex@warning@no@line{No \noexpand\reporttype given}}
 %%% Default to Final Report
