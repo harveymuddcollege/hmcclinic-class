@@ -4,7 +4,7 @@
 %
 % $Id$
 %
-% Copyright (C) 2003
+% Copyright (C) 2007
 %
 % Claire Connelly <cmc@math.hmc.edu>
 %              and 
@@ -276,25 +276,6 @@
 \def\@reporttype{Final Report}
 
 
-%%% Specify some details about the appearance of the table of contents.
-
-
-\renewcommand{\tableofcontents}{%
-    \if@twocolumn
-      \@restonecoltrue\onecolumn
-    \else
-      \@restonecolfalse
-    \fi
-    \chapter*{\contentsname
-        \@mkboth{%
-           \contentsname}{\contentsname}}%
-    \@starttoc{toc}%
-    \if@restonecol\twocolumn\fi
-    }
-
-
-
-
 %%% Print only the chapter and section number in the Table of Contents.
 
 \setcounter{tocdepth}{1}
@@ -305,44 +286,63 @@
 %%% \font\mffont=logosl10 scaled\magstep1
 \let\mffont=\sf
 
+
+%%% Handle specifics for short or long documents.
 \ifshortdoc
+%% Ignore the \*matter commands.
 \newcommand{\frontmatter}{}
 \newcommand{\mainmatter}{}
 \newcommand{\backmatter}{}
 \else
+%% For longer documents, define the effects of the \*matter
+%% commands.
 \renewcommand{\frontmatter}{%
-    \cleardoublepage
+  \cleardoublepage
   \@mainmatterfalse
   \pagenumbering{roman}
   \pagestyle{front}}
 
 \renewcommand{\mainmatter}{%
-    \cleardoublepage
+  \cleardoublepage
   \@mainmattertrue
   \pagenumbering{arabic}%
-\pagestyle{fancy}}
-\fi
+  \pagestyle{fancy}}
 
+%% Specify some details about the appearance of the table of contents.
+\renewcommand{\tableofcontents}{%
+  \if@twocolumn
+  \@restonecoltrue\onecolumn
+  \else
+  \@restonecolfalse
+  \fi
+  \chapter*{\contentsname
+    \@mkboth{%
+      \contentsname}{\contentsname}}%
+  \@starttoc{toc}%
+  \if@restonecol\twocolumn\fi
+}
+
+%% Redefine the thebibliography environment to typeset as a chapter.
 \renewenvironment{thebibliography}[1]
-     {\chapter*{\bibname
-        \@mkboth{\bibname}{\bibname}
-      \addcontentsline{toc}{chapter}{\bibname}}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
+{\chapter*{\bibname
+    \@mkboth{\bibname}{\bibname}
+    \addcontentsline{toc}{chapter}{\bibname}}%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+  {\settowidth\labelwidth{\@biblabel{#1}}%
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \@openbib@code
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy
+  \clubpenalty4000
+  \@clubpenalty \clubpenalty
+  \widowpenalty4000%
+  \sfcode`\.\@m}
+{\def\@noitemerr
+  {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
 \renewcommand\newblock{\hskip .11em\@plus.33em\@minus.07em}
 \let\@openbib@code\@empty
 
@@ -350,44 +350,46 @@
     % Handle natbib
     \let\N@tbibsection\bibsection
     \def\bibsection{\N@tbibsection\addcontentsline{toc}{chapter}{\bibname}}%
-}}
+  }}
 
-
+%% Redefine the theindex environment to typeset as a chapter.
 \renewenvironment{theindex}
-               {\if@twocolumn
-                  \@restonecolfalse
-                \else
-                  \@restonecoltrue
-                \fi
-                \columnseprule \z@
-                \columnsep 35\p@
-                \twocolumn[\@makeschapterhead{\indexname}]%
-                \@mkboth{\indexname}%
-                        {\indexname}%
-                        \addcontentsline{toc}{chapter}{\indexname}%
-                \thispagestyle{plain}\parindent\z@
-                \parskip\z@ \@plus .3\p@\relax
-                \let\item\@idxitem}
-               {\if@restonecol\onecolumn\else\clearpage\fi}
+{\if@twocolumn
+  \@restonecolfalse
+  \else
+  \@restonecoltrue
+  \fi
+  \columnseprule \z@
+  \columnsep 35\p@
+  \twocolumn[\@makeschapterhead{\indexname}]%
+  \@mkboth{\indexname}%
+  {\indexname}%
+  \addcontentsline{toc}{chapter}{\indexname}%
+  \thispagestyle{plain}\parindent\z@
+  \parskip\z@ \@plus .3\p@\relax
+  \let\item\@idxitem}
+{\if@restonecol\onecolumn\else\clearpage\fi}
 
-
-%%% Fix \cleardoublepage so it doesn't put headers on pages that are
-%%% supposed to be blank.
-
+%% Fix \cleardoublepage so it doesn't put headers on pages that are
+%% supposed to be blank.
 \renewcommand*{\cleardoublepage}{%
-% original definition, see latex.ltx
+  % original definition, see latex.ltx
   \clearpage
   \if@twoside
-     \ifodd\c@page
+  \ifodd\c@page
   \else
-     \thispagestyle{empty}% added
-     \hbox{}\newpage
-     \if@twocolumn
-        \hbox{}\newpage
-     \fi
-     \fi
+  \thispagestyle{empty}% added
+  \hbox{}\newpage
+  \if@twocolumn
+  \hbox{}\newpage
+  \fi
+  \fi
   \fi
 }
+
+%% End of special handling for longer documents.
+\fi
+
 
 %% Ragged bottom is better than the alternative...
 
