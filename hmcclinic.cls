@@ -287,6 +287,25 @@
 \let\mffont=\sf
 
 
+
+%%% Fix \cleardoublepage so it doesn't put headers on pages that are
+%%% supposed to be blank.
+\renewcommand*{\cleardoublepage}{%
+  % original definition, see latex.ltx
+  \clearpage
+  \if@twoside
+  \ifodd\c@page
+  \else
+  \thispagestyle{empty}% added
+  \hbox{}\newpage
+  \if@twocolumn
+  \hbox{}\newpage
+  \fi
+  \fi
+  \fi
+}
+
+
 %%% Handle specifics for short or long documents.
 \ifshortdoc
 %% Ignore the \*matter commands.
@@ -370,22 +389,6 @@
   \let\item\@idxitem}
 {\if@restonecol\onecolumn\else\clearpage\fi}
 
-%% Fix \cleardoublepage so it doesn't put headers on pages that are
-%% supposed to be blank.
-\renewcommand*{\cleardoublepage}{%
-  % original definition, see latex.ltx
-  \clearpage
-  \if@twoside
-  \ifodd\c@page
-  \else
-  \thispagestyle{empty}% added
-  \hbox{}\newpage
-  \if@twocolumn
-  \hbox{}\newpage
-  \fi
-  \fi
-  \fi
-}
 
 %% End of special handling for longer documents.
 \fi
