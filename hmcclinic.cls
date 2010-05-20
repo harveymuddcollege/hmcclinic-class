@@ -87,12 +87,13 @@
 
 
 %%% Set the default typeface via a package.
+\RequirePackage[T1]{fontenc}
 \RequirePackage{mathpazo}
-\RequirePackage[scaled=.95]{helvet}
+\RequirePackage[scaled=.90]{helvet}
 
 
-%%% Use Computer Modern Typewriter as the monospace typeface.
-\RequirePackage{cmtty}
+%%% Use Latin Modern Typewriter as the monospace typeface.
+\renewcommand{\ttdefault}{lmtt}
 
 %%% Set some defaults for bibliographic punctuation used by natbib.sty.
 \bibpunct[:~]{(}{)}{;}{a}{,}{,~} 
