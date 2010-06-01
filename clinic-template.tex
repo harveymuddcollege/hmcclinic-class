@@ -45,7 +45,19 @@
 
 %%% You can also load additional LaTeX packages, or style files, that
 %%% affect the way that the document is laid out, typeset, or supply
-%%% additional commands or environments.
+%%% additional commands or environments.  If you choose to load
+%%% additional packages, make sure that they appear *before* the
+%%% line loading hyperref; hyperref changes pieces of other
+%%% packages, so it's important that it be loaded last.
+
+
+%%% Load all other packages before this point.
+
+%%% Load hyperref.
+\usepackage[breaklinks=true,
+  bookmarks,
+  pdfpagemode=UseOutlines,
+  pdfpagelayout=SinglePage]{hyperref}
 
 
 %%% The preamble can also be used to define your own commands and
