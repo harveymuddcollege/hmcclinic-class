@@ -83,6 +83,7 @@
 \RequirePackage{natbib}           % Better bibliography handling.
 \RequirePackage{ifthen}
 \RequirePackage{graphics}
+\RequirePackage[obeyspaces,spaces]{url}
 \RequirePackage{fancyhdr}
 \RequirePackage{caption}
 \captionsetup{
@@ -116,6 +117,9 @@
 
 %%% Use Latin Modern Typewriter as the monospace typeface.
 \renewcommand{\ttdefault}{lmtt}
+
+%%% Set URLs in sans-serif type.
+\AtBeginDocument{\urlstyle{sf}}
 
 %%% Set some defaults for bibliographic punctuation used by natbib.sty.
 \bibpunct[:~]{(}{)}{;}{a}{,}{,~} 
