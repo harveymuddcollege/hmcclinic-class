@@ -4,7 +4,7 @@
 %
 % $Id$
 %
-% Copyright (C) 2007--2009
+% Copyright (C) 2007--2010
 %
 % Claire Connelly <cmc@math.hmc.edu>
 %              and 
@@ -40,7 +40,7 @@
 % \fi
 %%
 
-\ProvidesClass{hmcclinic}[2004/09/20 HMC Clinic Report class]
+\ProvidesClass{hmcclinic}[2010/08/23 HMC Clinic Report class, version 3.3]
 \NeedsTeXFormat{LaTeX2e}
 
 %%% Declare and set some options.
