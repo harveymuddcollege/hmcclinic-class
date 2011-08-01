@@ -310,9 +310,6 @@
 \def\@reporttype{Final Report}
 
 
-%%% Print only the chapter and section number in the Table of Contents.
-
-\setcounter{tocdepth}{1}
 %%% Make \eqref behave the way we want.
 \renewcommand{\eqref}[1]{Equation~\ref{#1}}
 
