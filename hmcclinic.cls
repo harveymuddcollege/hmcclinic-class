@@ -40,7 +40,7 @@
 % \fi
 %%
 
-\ProvidesClass{hmcclinic}[2010/08/23 HMC Clinic Report class, version 3.3]
+\ProvidesClass{hmcclinic}[2011/08/25 HMC Clinic Report class, version 3.4]
 \NeedsTeXFormat{LaTeX2e}
 
 %%% Declare and set some options.
