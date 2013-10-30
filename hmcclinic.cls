@@ -77,6 +77,7 @@
 %%% Load some required/very useful packages.
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
+\RequirePackage{calc}
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
 \RequirePackage{booktabs}         % Publication-quality tables.
@@ -223,9 +224,8 @@
       \raggedright
       \parindent0pt
       \null
-      {\large \scalebox{0.55}{\includegraphics{hmclogo}} \\[0.5ex]%
-                                % Harvey Mudd College\\[0.5ex]%
-        \@department\par}%
+      {\large \scalebox{0.25}{\includegraphics{hmclogo}}
+        \quad  \raisebox{36bp-0.5\depth}{\textsf{\textbf{\@department}}}}\par%
         \vskip 60pt minus 15pt
       {\large \@reporttype{} for \\[0.5ex]%
         \emph{\@sponsor}}
