@@ -2,9 +2,7 @@
 % 
 % hmcclinic.cls -- Harvey Mudd College Clinic Report LaTeX Class File
 %
-% $Id$
-%
-% Copyright (C) 2007--2010
+% Copyright (C) 2007--2015
 %
 % Claire Connelly <cmc@math.hmc.edu>
 %              and 
@@ -40,7 +38,7 @@
 % \fi
 %%
 
-\ProvidesClass{hmcclinic}[2011/08/25 HMC Clinic Report class, version 3.4]
+\ProvidesClass{hmcclinic}[2015/07/16 HMC Clinic Report class, version 5.0]
 \NeedsTeXFormat{LaTeX2e}
 
 %%% Declare and set some options.
