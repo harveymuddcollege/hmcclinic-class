@@ -53,8 +53,42 @@
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}%
     {\ifshortdoc report\else book\fi}}
+
+% Department for report.
+\newif\ifbio@dept
+\bio@deptfalse
+\DeclareOption{biology}{%
+  \bio@depttrue
+}
+\newif\ifcs@dept
+\cs@deptfalse
+\DeclareOption{computerscience}{%
+  \cs@depttrue
+}
+\newif\ifchem@dept
+\chem@deptfalse
+\DeclareOption{chemistry}{%
+  \chem@depttrue
+}
+\newif\ifeng@dept
+\eng@deptfalse
+\DeclareOption{engineering}{%
+  \eng@depttrue
+}
+\newif\ifmath@dept
+\math@deptfalse
+\DeclareOption{mathematics}{%
+  \math@depttrue
+}
+\newif\ifphysics@dept
+\physics@deptfalse
+\DeclareOption{physics}{%
+  \physics@depttrue
+}
+
 \ExecuteOptions{}
 \ProcessOptions
+
 
 %%% Load the book class (or article class for proposals) with some
 %%% default options.
@@ -447,4 +481,33 @@ document-class option.
 \raggedbottom
 
 
+%% Set the department name.
+\ifbio@dept
+  \AtEndOfClass{\department{Biology Clinic}}
+\else
+  \ifcs@dept
+    \AtEndOfClass{\department{Computer Science Clinic}}
+  \else
+    \ifchem@dept
+      \AtEndOfClass{\department{Chemistry Clinic}}
+    \else
+      \ifeng@dept
+        \AtEndOfClass{\department{Engineering Clinic}}
+      \else
+        \ifmath@dept
+          \AtEndOfClass{\department{Mathematics Clinic}}
+        \else
+          \ifphysics@dept
+            \AtEndOfClass{\department{Physics Clinic}}
+          \else
+            \AtEndOfClass{\department{\textbf{no department document-class option found}}}
+            \ClassError{hmcclinic}{No departmental document-class option found}%
+            {See the template file and documentation for more information}
+          \fi
+        \fi
+      \fi
+    \fi
+  \fi
+\fi
 
+\endinput
