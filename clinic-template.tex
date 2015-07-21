@@ -1,15 +1,12 @@
 %%% Template File for Use with the hmcclinic.cls.
 %%%
 %%% C.M. Connelly <cmc@math.hmc.edu>
-%%%  $Id$
-%%%
-%%%  Tag: $Name$
 
 
 %%% !!! HMC STUDENTS SHOULD REMOVE THE FOLLOWING COPYRIGHT NOTICE FROM
 %%% !!! FINAL SUBMISSIONS.
 
-%%% Copyright (C) 2004-2010 Department of Mathematics, Harvey Mudd College.
+%%% Copyright (C) 2004-2015 Department of Mathematics, Harvey Mudd College.
 
 %%% See the COPYING document, which should accompany this
 %%% distribution, for information about distribution and modification
@@ -40,9 +37,34 @@
 %%% Clinic reports use the clinic class, which should be located
 %%% somewhere in TeX's search path.
 
-%%% For midyear reports, include the midyear option, as in
-%%%   \documentclass[midyear]{hmcclinic}
-\documentclass{hmcclinic}
+%%% You must set a document-class option to tell the class what
+%%% department your report will be for.
+\documentclass[replace-with-department-code]{hmcclinic}
+
+%% Supported department classes are
+%%
+%%    biology
+%%    computer-science
+%%    chemistry
+%%    engineering
+%%    mathematics
+%%    physics
+
+
+%% In addition, use ``proposal'' as a document-class option for
+%% typesetting Statements of Work; for example,
+%%
+%%    \documentclass[department,proposal]{hmcclinic}
+%%
+%% and ``midyear'' for midyear (end of fall semester) Clinic
+%% reports; for example
+%%
+%%    \documentclass[department,midyear]{hmcclinic}
+
+%% For your final report, of course, just include the department
+%% document-class option.
+
+
 
 %%% You can also load additional LaTeX packages, or style files, that
 %%% affect the way that the document is laid out, typeset, or supply
@@ -390,3 +412,8 @@
 \end{document}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
