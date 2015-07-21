@@ -62,7 +62,10 @@
 }
 \newif\ifcs@dept
 \cs@deptfalse
-\DeclareOption{computerscience}{%
+\DeclareOption{computer-science}{%
+  \cs@depttrue
+}
+\DeclareOption{cs}{%
   \cs@depttrue
 }
 \newif\ifchem@dept
@@ -77,6 +80,9 @@
 }
 \newif\ifmath@dept
 \math@deptfalse
+\DeclareOption{math}{%
+  \math@depttrue
+}
 \DeclareOption{mathematics}{%
   \math@depttrue
 }
