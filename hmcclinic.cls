@@ -168,11 +168,11 @@ document-class option.
 %%% Set the default typefaces.
 \usepackage[full]{textcomp}
 \usepackage{newpxtext}
-\usepackage{sourcesanspro} % sans serif
+\usepackage[scaled=0.98]{sourcesanspro}
 \usepackage[varqu,varl]{inconsolata} % sans serif typewriter
 \usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
 \usepackage[cal=boondoxo]{mathalfa} % mathcal
-\linespread{1.05}
+
 
 %%% Set URLs in sans-serif type.
 \AtBeginDocument{\urlstyle{sf}}
