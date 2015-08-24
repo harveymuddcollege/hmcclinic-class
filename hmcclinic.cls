@@ -166,13 +166,13 @@ document-class option.
 }
 
 
-%%% Set the default typefaces.
-\usepackage[full]{textcomp}
-\usepackage{newpxtext}
-\usepackage[scaled=0.98]{sourcesanspro}
-\usepackage[varqu,varl]{inconsolata} % sans serif typewriter
-\usepackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
-\usepackage[cal=boondoxo]{mathalfa} % mathcal
+%%% Set typefaces.
+\RequirePackage[full]{textcomp}
+\RequirePackage{newpxtext}
+\RequirePackage[scaled=0.98]{sourcesanspro} % sans-serif
+\RequirePackage[varqu,varl]{inconsolata} % sans-serif typewriter
+\RequirePackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
+\RequirePackage[cal=boondoxo]{mathalfa} % mathcal
 
 
 %%% Set URLs in sans-serif type.
