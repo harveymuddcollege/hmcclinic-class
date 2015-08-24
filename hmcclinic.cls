@@ -38,7 +38,7 @@
 % \fi
 %%
 
-\ProvidesClass{hmcclinic}[2015/07/16 HMC Clinic Report class, version 5.0]
+\ProvidesClass{hmcclinic}[2015/08/24 HMC Clinic Report class, version 5.0]
 \NeedsTeXFormat{LaTeX2e}
 
 %%% Declare and set some options.
@@ -48,8 +48,9 @@
   \shortdoctrue
   \AtEndOfClass{\def\@reporttype{Statement of Work}}%
 }
+\newif\if@midyear\@midyearfalse
 \DeclareOption{midyear}{%
-  \AtEndOfClass{\def\@reporttype{Midyear Report}}%
+  \@midyeartrue
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}%
     {\ifshortdoc report\else book\fi}}
@@ -490,21 +491,39 @@ document-class option.
 %% Set the department name.
 \ifbio@dept
   \AtEndOfClass{\department{Biology Clinic}}
+  \if@midyear
+  \AtEndOfClass{\def\@reporttype{Midyear Report}}
+  \fi
 \else
   \ifcs@dept
     \AtEndOfClass{\department{Computer Science Clinic}}
+    \if@midyear
+    \AtEndOfClass{\def\@reporttype{Midyear Update}}
+    \fi
   \else
     \ifchem@dept
       \AtEndOfClass{\department{Chemistry Clinic}}
+      \if@midyear
+      \AtEndOfClass{\def\@reporttype{Midyear Report}}
+      \fi
     \else
       \ifeng@dept
         \AtEndOfClass{\department{Engineering Clinic}}
+        \if@midyear
+        \AtEndOfClass{\def\@reporttype{Midyear Report}}
+        \fi
       \else
         \ifmath@dept
           \AtEndOfClass{\department{Mathematics Clinic}}
+          \if@midyear
+          \AtEndOfClass{\def\@reporttype{Midyear Report}}
+          \fi
         \else
           \ifphysics@dept
             \AtEndOfClass{\department{Physics Clinic}}
+            \if@midyear
+            \AtEndOfClass{\def\@reporttype{Midyear Report}}
+            \fi
           \else
             \AtEndOfClass{\department{\textbf{no department document-class option found}}}
             \ClassError{hmcclinic}{No departmental document-class option found}%
