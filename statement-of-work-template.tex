@@ -20,12 +20,24 @@
 %%% !!! END COPYRIGHT NOTICE.
 
 
-%%% Clinic reports use the clinic class, which should be located
+%%% Clinic reports use the hmcclinic class, which should be located
 %%% somewhere in TeX's search path.
 
 %%% For your ``statement of work'' (or ``work statement''), specify
 %%% the ``proposal'' document-class option to the hmcclinic class.
-\documentclass[proposal]{hmcclinic}
+
+%%% You must also set a document-class option to tell the class what
+%%% department your report will be for.
+\documentclass[replace-with-department-code,proposal]{hmcclinic}
+
+%% Supported department classes are
+%%
+%%    biology
+%%    computer-science
+%%    chemistry
+%%    engineering
+%%    mathematics
+%%    physics
 
 %%% The major difference between the statement of work and a midyear
 %%% or final report is that the statement of work is typeset as an
