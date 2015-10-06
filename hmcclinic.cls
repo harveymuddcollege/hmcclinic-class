@@ -168,7 +168,7 @@ document-class option.
 
 %%% Set typefaces.
 \RequirePackage[full]{textcomp}
-\RequirePackage{newpxtext}
+\RequirePackage[largesc]{newpxtext}
 \RequirePackage[scaled=0.98]{sourcesanspro} % sans-serif
 \RequirePackage[varqu,varl]{inconsolata} % sans-serif typewriter
 \RequirePackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
