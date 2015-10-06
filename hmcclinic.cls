@@ -330,12 +330,13 @@ document-class option.
            \@consultant
            \end{tabular}\par}}%
       \fi
-     
     \@thanks
     \vfil\eject
     \cleardoublepage
   \end{titlepage}%
   \setcounter{footnote}{0}%
+  \setcounter{page}{1}%
+  \thispagestyle{empty}
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@thanks\@empty
