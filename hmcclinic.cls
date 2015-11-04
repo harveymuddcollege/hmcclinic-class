@@ -207,15 +207,15 @@ document-class option.
 
 
 %%% Define some environments.
-% No need to define abstract
 \if@shortdoc
+% No need to define abstract or acknowledgments.
 \else
 \newenvironment{abstract}{\chapter*{Abstract}%
 \addcontentsline{toc}{chapter}{Abstract}}{}
-\fi
 
 \newenvironment{acknowledgments}{\chapter*{Acknowledgments}%
 \addcontentsline{toc}{chapter}{Acknowledgments}}{}
+\fi
 
 
 %%% Set the page layout parameters for article and books.
