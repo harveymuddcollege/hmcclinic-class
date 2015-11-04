@@ -44,10 +44,17 @@
 %%% Declare and set some options.
 
 \newif\if@shortdoc\@shortdocfalse
+
 \DeclareOption{proposal}{%
   \@shortdoctrue
   \AtEndOfClass{\def\@reporttype{Statement of Work}}%
 }
+\DeclareOption{sow}{%
+  \@shortdoctrue
+  \AtEndOfClass{\def\@reporttype{Statement of Work}}%
+}
+
+
 \newif\if@midyear\@midyearfalse
 \DeclareOption{midyear}{%
   \@midyeartrue
