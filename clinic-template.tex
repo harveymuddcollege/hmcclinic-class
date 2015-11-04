@@ -1,7 +1,4 @@
 %%% Template File for Use with the hmcclinic.cls.
-%%%
-%%% C.M. Connelly <cmc@math.hmc.edu>
-
 
 %%% !!! HMC STUDENTS SHOULD REMOVE THE FOLLOWING COPYRIGHT NOTICE FROM
 %%% !!! FINAL SUBMISSIONS.
@@ -15,7 +12,7 @@
 %%% !!! END COPYRIGHT NOTICE.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Note that for your Clinic report, you should remove any        %%%
+%%% Note that for *your* Clinic report, you should remove any      %%%
 %%% comments that aren't relevant to your report.  You should also %%%
 %%% remove the copyright notice assigning copyright to the         %%%
 %%% department (depending on your sponsor, you may need to assign  %%%
@@ -34,7 +31,7 @@
 %%% define the appearance of a document, and include a variety of
 %%% structural commands.
 
-%%% Clinic reports use the clinic class, which should be located
+%%% Clinic reports use the hmcclinic class, which should be located
 %%% somewhere in TeX's search path.
 
 %%% You must set a document-class option to tell the class what
@@ -50,34 +47,47 @@
 %%    mathematics
 %%    physics
 
-
-%% In addition, use ``proposal'' as a document-class option for
-%% typesetting Statements of Work; for example,
-%%
-%%    \documentclass[department,proposal]{hmcclinic}
-%%
-%% and ``midyear'' for midyear (end of fall semester) Clinic
-%% reports; for example
-%%
-%%    \documentclass[department,midyear]{hmcclinic}
-
-%% For your final report, of course, just include the department
+%% For your final report, all you need is the department
 %% document-class option.
 
 
+%% For your Statement of Work/proposal and midyear reports or
+%% updates, you also need to specify the type of document you're
+%% creating.
+%%
+%% For your Statement of Work, use "proposal"; for example,
+%%
+%%    \documentclass[department,proposal]{hmcclinic}
+%%
+%% For midyear reports, use "midyearreport" for a book-like
+%% "Midyear Report" or "midyearupdate" for a shorter "Midyear
+%% Update" document.
+%%
+%%    \documentclass[department,midyearreport]{hmcclinic}
+%%
+%% or
+%%
+%%    \documentclass[department,midyearupdate]{hmcclinic}
 
-%%% You can also load additional LaTeX packages, or style files, that
-%%% affect the way that the document is laid out, typeset, or supply
-%%% additional commands or environments.  If you choose to load
-%%% additional packages, make sure that they appear *before* the
-%%% line loading hyperref; hyperref changes pieces of other
-%%% packages, so it's important that it be loaded last.
+
+%%% You can load additional LaTeX packages, or style files, that
+%%% affect the way that the document is laid out, typeset, or
+%%% supply additional commands or environments.  
+
+%%% Keep in mind that the class file already loads many packages
+%%% for you; check the documentation or look for the
+%%% \RequirePackage lines to see what's loaded.
+
+%%% If you choose to use additional packages, make sure that they
+%%% appear *before* the line loading hyperref; hyperref changes
+%%% pieces of other packages, so it's important that it be loaded
+%%% last.
 
 % \usepackage{graphicx}           % More control over graphic inclusion.
 % \usepackage{amsthm}             % AMS theorem styles
 
 
-%%% Load all other packages before this point.
+%%% !!! Load all other packages before this point !!!
 
 %%% Load hyperref.
 \usepackage[breaklinks=true,
