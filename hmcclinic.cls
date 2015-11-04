@@ -516,39 +516,21 @@ document-class option.
 %% Set the department name.
 \ifbio@dept
   \AtEndOfClass{\department{Biology Clinic}}
-  \if@midyear
-  \AtEndOfClass{\def\@reporttype{Midyear Report}}
-  \fi
 \else
   \ifcs@dept
     \AtEndOfClass{\department{Computer Science Clinic}}
-    \if@midyear
-    \AtEndOfClass{\def\@reporttype{Midyear Update}}
-    \fi
   \else
     \ifchem@dept
       \AtEndOfClass{\department{Chemistry Clinic}}
-      \if@midyear
-      \AtEndOfClass{\def\@reporttype{Midyear Report}}
-      \fi
     \else
       \ifeng@dept
         \AtEndOfClass{\department{Engineering Clinic}}
-        \if@midyear
-        \AtEndOfClass{\def\@reporttype{Midyear Report}}
-        \fi
       \else
         \ifmath@dept
           \AtEndOfClass{\department{Mathematics Clinic}}
-          \if@midyear
-          \AtEndOfClass{\def\@reporttype{Midyear Report}}
-          \fi
         \else
           \ifphysics@dept
             \AtEndOfClass{\department{Physics Clinic}}
-            \if@midyear
-            \AtEndOfClass{\def\@reporttype{Midyear Report}}
-            \fi
           \else
             \AtEndOfClass{\department{\textbf{no department document-class option found}}}
             \ClassError{hmcclinic}{No departmental document-class option found}%
