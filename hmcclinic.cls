@@ -43,9 +43,9 @@
 
 %%% Declare and set some options.
 
-\newif\ifshortdoc\shortdocfalse
+\newif\if@shortdoc\@shortdocfalse
 \DeclareOption{proposal}{%
-  \shortdoctrue
+  \@shortdoctrue
   \AtEndOfClass{\def\@reporttype{Statement of Work}}%
 }
 \newif\if@midyear\@midyearfalse
@@ -53,7 +53,7 @@
   \@midyeartrue
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}%
-    {\ifshortdoc report\else book\fi}}
+    {\if@shortdoc report\else book\fi}}
 
 % Department for report.
 \newif\ifbio@dept
@@ -99,7 +99,7 @@
 
 %%% Load the book class (or article class for proposals) with some
 %%% default options.
-\ifshortdoc
+\if@shortdoc
 \LoadClass[11pt,twoside]{article}
 \else
 \LoadClass[11pt,openright]{book}
@@ -183,8 +183,8 @@ document-class option.
 
 
 %%% Define some environments.
-\ifshortdoc
 % No need to define abstract
+\if@shortdoc
 \else
 \newenvironment{abstract}{\chapter*{Abstract}%
 \addcontentsline{toc}{chapter}{Abstract}}{}
@@ -198,8 +198,8 @@ document-class option.
 
 \setlength{\headheight}{14pt}
 
-\ifshortdoc
 %%% Set the headers and footers.
+\if@shortdoc
  
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
@@ -397,7 +397,7 @@ document-class option.
 
 
 %%% Handle specifics for short or long documents.
-\ifshortdoc
+\if@shortdoc
 %% Ignore the \*matter commands.
 \newcommand{\frontmatter}{}
 \newcommand{\mainmatter}{}
