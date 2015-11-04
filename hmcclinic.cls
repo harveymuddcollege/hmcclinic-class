@@ -70,7 +70,12 @@
 }
 \DeclareOption{midyear}{%
   \@midyeartrue
+  \AtEndOfClass{\def\@reporttype{Midyear Report}}
+  \ClassWarning{hmcclinic}{Using deprecated midyear option.\MessageBreak\MessageBreak
+  Assuming you meant to set "midyearreport" (book class).  If not,\MessageBreak
+  specify the "midyearupdate" document class option.}
 }
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}%
     {\if@shortdoc report\else book\fi}}
 
