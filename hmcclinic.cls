@@ -56,6 +56,18 @@
 
 
 \newif\if@midyear\@midyearfalse
+\newif\if@midyearupdate\@midyearupdatefalse
+\newif\if@midyearreport\@midyearreportfalse
+
+\DeclareOption{midyearreport}{%
+  \@midyeartrue
+  \AtEndOfClass{\def\@reporttype{Midyear Report}}
+}
+\DeclareOption{midyearupdate}{%
+  \@midyeartrue
+  \@shortdoctrue
+  \AtEndOfClass{\def\@reporttype{Midyear Update}}
+}
 \DeclareOption{midyear}{%
   \@midyeartrue
 }
