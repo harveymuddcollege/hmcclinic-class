@@ -222,8 +222,8 @@ document-class option.
 
 \setlength{\headheight}{14pt}
 
-%%% Set the headers and footers.
 \if@shortdoc
+%%% Set the headers and footers for short documents (article-base).
  
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
@@ -242,7 +242,7 @@ document-class option.
   \markright{#1}{}}
 
 \else
-%%% Set the headers and footers.
+%%% Set the headers and footers for longer documents (book-base).
 
 \pagestyle{fancy}{%
   \fancyhf{} %% Clear all headers and footers.
