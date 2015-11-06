@@ -208,7 +208,14 @@ document-class option.
 
 %%% Define some environments.
 \if@shortdoc
-% No need to define abstract or acknowledgments.
+% Throw away content in abstract or acknowledgments environments.
+\newsavebox{\@sdtrash}
+\renewenvironment{abstract}{%
+\begin{lrbox}{\@sdtrash}}%
+{\end{lrbox}}
+\newenvironment{acknowledgments}{%
+\begin{lrbox}{\@sdtrash}}%
+{\end{lrbox}}
 \else
 \newenvironment{abstract}{\chapter*{Abstract}%
 \addcontentsline{toc}{chapter}{Abstract}}{}
