@@ -211,7 +211,7 @@ document-class option.
 \RequirePackage[varqu,varl]{inconsolata} % sans-serif typewriter
 \RequirePackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
 \RequirePackage[scr=rsfso]{mathalfa} % mathcal
-\linespread(1.025}
+\linespread{1.025}
 
 
 %%% Set URLs in sans-serif type.
