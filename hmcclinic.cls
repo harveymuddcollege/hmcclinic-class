@@ -117,6 +117,17 @@
   \physics@depttrue
 }
 
+% Support loading of amsthm.  It needs to be loaded before the
+% newpxmath font package, as newpxmath defines or redefines some
+% commands provided by amsthm.
+
+\newif\if@amsthm
+\@amsthmfalse
+\DeclareOption{amsthm}{%
+  \@amsthmtrue
+}
+
+
 \ExecuteOptions{}
 \ProcessOptions
 
@@ -157,6 +168,9 @@ document-class option.
 %%% Load some required/very useful packages.
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
+\if@amsthm
+  \RequirePackage{amsthm}
+\fi
 \RequirePackage{calc}
 \RequirePackage{xspace}
 \RequirePackage{verbatim}
@@ -192,11 +206,12 @@ document-class option.
 
 %%% Set typefaces.
 \RequirePackage[full]{textcomp}
-\RequirePackage[largesc]{newpxtext}
+\RequirePackage[largesc,theoremfont]{newpxtext}
 \RequirePackage[scaled=0.98]{sourcesanspro} % sans-serif
 \RequirePackage[varqu,varl]{inconsolata} % sans-serif typewriter
 \RequirePackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
-\RequirePackage[cal=boondoxo]{mathalfa} % mathcal
+\RequirePackage[scr=rsfso]{mathalfa} % mathcal
+\linespread(1.025}
 
 
 %%% Set URLs in sans-serif type.

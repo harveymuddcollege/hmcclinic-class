@@ -110,7 +110,9 @@
 %%% Some theorem-like command definitions.
 
 %%% The \newtheorem command comes from the amsthm package.  That
-%%% package is loaded by the class file.
+%%% package is *not* automatically loaded by the class file, so if
+%%% you choose to use these commands, you'll need to specify the
+%%% "amsthm" document-class option.
 
 %%% Note that these definitions have changed from the version in the
 %%% sample report document by dropping the ``within'' argument.  See

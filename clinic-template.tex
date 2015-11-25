@@ -78,13 +78,18 @@
 %%% for you; check the documentation or look for the
 %%% \RequirePackage lines to see what's loaded.
 
+%%%  !!! If you want to use the amsthm package (AMS theorems
+%%%  !!! package), specify "amsthm" in your document-class
+%%%  !!! options, which will load amsthm in a way that is
+%%%  !!! compatible with the class's font selections.
+
 %%% If you choose to use additional packages, make sure that they
 %%% appear *before* the line loading hyperref; hyperref changes
 %%% pieces of other packages, so it's important that it be loaded
 %%% last.
 
 % \usepackage{graphicx}           % More control over graphic inclusion.
-% \usepackage{amsthm}             % AMS theorem styles
+
 
 
 %%% !!! Load all other packages before this point !!!
@@ -177,8 +182,9 @@
 %%% Some theorem-like command definitions.
 
 %%% The \newtheorem command comes from the amsthm package.  That
-%%% package is *not* loaded by the class file, so if you choose
-%%% to use these commands, you'll need to load the package above.
+%%% package is *not* automatically loaded by the class file, so if
+%%% you choose to use these commands, you'll need to specify the
+%%% "amsthm" document-class option.
 
 % \newtheorem{thm}{Theorem}[chapter]
 % \newtheorem{lem}{Lemma}[chapter]
