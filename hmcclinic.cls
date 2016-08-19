@@ -208,9 +208,11 @@ document-class option.
 \RequirePackage[full]{textcomp}
 \RequirePackage[largesc,theoremfont]{newpxtext}
 \RequirePackage[scaled=0.98]{sourcesanspro} % sans-serif
-\RequirePackage[varqu,varl]{inconsolata} % sans-serif typewriter
+\RequirePackage{sourcecodepro} % sans-serif typewriter
 \RequirePackage[bigdelims,vvarbb]{newpxmath} % bb from STIX
 \RequirePackage[scr=rsfso]{mathalfa} % mathcal
+\RequirePackage{microtype}
+\DisableLigatures{encoding = T1, family = tt* }
 \linespread{1.025}
 
 
