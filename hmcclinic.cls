@@ -141,26 +141,6 @@
 \fi
 
 
-
-%%% We no longer use an external configuration file; warn if we
-%%% find one.
-\IfFileExists{hmcclinic.cfg}{%
-  \ClassError{hmcclinic}{Configuration files are no longer\MessageBreak
-    supported as of release 5.0}%
-{As of release 5.0, this class no longer supports the use of\MessageBreak
-a configuration file to specify the department name.\MessageBreak
-\MessageBreak
-Delete the configuration file and add the name of your\MessageBreak
-department (e.g., mathematics, computerscience,\MessageBreak
-engineering, physics) as a document-class option.\MessageBreak
-\MessageBreak
-See the template file and documentation for more information.\MessageBreak
-\MessageBreak
-You can press Return or q to continue, but you will hit another\MessageBreak
-warning if you haven't specified a valid departmental\MessageBreak
-document-class option.
-{}}}
-
 %%% Get some useful information when errors occur.
 \setcounter{errorcontextlines}{25}
 
